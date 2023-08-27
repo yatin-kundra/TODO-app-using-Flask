@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+
+<title>TODO List</title>
+
+{% endblock %}
+
+
+
+
+{% block body %}
+
+    <div class="content">
+        <h1>TODO List</h1>
+
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th>Added</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            
+            {% for task in task %}
+                <tbody>
+                    <tr>
+                        <td> {{task.content}}</td>
+                        <td>{{task.date_created.date()}}</td>
+                        <td>
+                            <a href="/delete/{{task.id}}">Delete</a>
+                            <a href="/update/{{task.id}}">update</a>     
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            
+        </table>
+
+
+        <div class="form">
+            <form action="/" method="POST">
+                <input autocomplete = "off" type="text" name="content" id="content">
+                <input type="submit" value="Add List">
+            </form>
+        </div>
+           
+    </div>
+
+{% endblock %}
